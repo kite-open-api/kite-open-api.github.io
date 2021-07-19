@@ -1,5 +1,5 @@
 function getApiUrl() {
-    return window.parent.document.getElementById('userId');
+    return window.parent.document.getElementById('apiUrl');
 }
 
 function getUserId() {
