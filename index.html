@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Kite Open API">
+    <meta name="keywords" content="kite,open,api">
+    <meta property="og:title" content="Kite Open API">
+    <meta property="og:image" content="logo-kite-tab.png">
+    <meta property="og:url" content="https://kite-open-api.github.io/">
+    <title>Kite Open API</title>
+    <link rel="shortcut icon" type="image/x-icon" href="logo-kite-tab.png"/>
+    <style type="text/css">
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+            max-height: 100%;
+            font-family: Sans-serif, serif;
+            line-height: 1.5em;
+        }
+
+        #header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            overflow: hidden; /* Disables scrollbars on the header frame. To enable scrollbars, change "hidden" to "scroll" */
+            background: #2F2AB4;
+        }
+
+        #nav {
+            position: absolute;
+            top: 100px;
+            left: 0;
+            bottom: 0;
+            width: 230px;
+            overflow: auto; /* Scrollbars will appear on this frame only when there's enough content to require scrolling. To disable scrollbars, change to "hidden", or use "scroll" to enable permanent scrollbars */
+            background: #2F2AB4;
+        }
+
+        #logo {
+            padding: 10px;
+        }
+
+        main {
+            position: fixed;
+            top: 100px; /* Set this to the height of the header */
+            left: 230px;
+            right: 0;
+            bottom: 0;
+            overflow: auto;
+            background: #fff;
+        }
+
+        .innertube {
+            margin: 15px; /* Provides padding for the content */
+        }
+
+        p {
+            color: #ffffff;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        /*IE6 fix*/
+        * html body {
+            padding: 100px 0 0 230px; /* Set the first value to the height of the header and last value to the width of the nav */
+        }
+
+        * html main {
+            height: 100%;
+            width: 100%;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<header id="header">
+    <table width="100%">
+        <tr>
+            <td>
+                <div id="logo">
+                    <h1 style="color: white">Open API</h1>
+                </div>
+            </td>
+            <td>
+                <label style="color: white" for="APIURL">API URL</label>
+                <br>
+                <input type="text" id="APIURL"/>
+            </td>
+            <td>
+                <label style="color: white" for="basicAuthToken">Basic Auth Token</label>
+                <br>
+                <input type="text" id="basicAuthToken"/>
+            </td>
+            <td>
+                <label style="color: white" for="userId">User ID</label>
+                <br>
+                <input type="text" id="userId"/>
+            </td>
+            <td>
+                <label style="color: white" for="basicAuthToken">Card ID</label>
+                <br>
+                <input type="text" id="cardId"/>
+            </td>
+        </tr>
+    </table>
+</header>
+
+<main>
+    <iframe src="generate-otp.html" frameborder="0"></iframe>
+</main>
+
+<nav id="nav">
+    <div class="innertube">
+        <ul>
+            <li><a href="#">Add User</a></li>
+            <li><a href="#">Generate OTP</a></li>
+            <li><a href="#">Verify OTP</a></li>
+            <li><a href="#">Add Minimum KYC</a></li>
+            <li><a href="#">Add Virtual Card</a></li>
+            <li><a href="#">View Card</a></li>
+        </ul>
+    </div>
+</nav>
+</body>
+</html>
