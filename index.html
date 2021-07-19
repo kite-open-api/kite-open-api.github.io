@@ -43,6 +43,7 @@
 
         #logo {
             padding: 10px;
+            margin-top: 15px;
         }
 
         main {
@@ -188,9 +189,13 @@
         <tr>
             <td>
                 <div id="logo">
-                    <h1 style="color: white">
-                        <a href="landing-page.html" target="iframeApi">Open API</a>
-                    </h1>
+                    <span style="color: white; font-size: 26pt;">
+                        <a href="landing-page.html"
+                           onclick="clearRequestResponseJson()"
+                           target="iframeApi">
+                           Open API
+                        </a>
+                    </span>
                 </div>
             </td>
             <td>
@@ -230,7 +235,7 @@
                         <td>
                         <textarea name="requestJson"
                                   id="requestJson"
-                                  cols="65"
+                                  cols="77"
                                   rows="14"
                                   placeholder="Request"
                                   style="border: none; font-family: Consolas,monospace;"
@@ -241,7 +246,7 @@
                         <td style="border-top: 1px solid #aaaaaa;">
                         <textarea name="responseJson"
                                   id="responseJson"
-                                  cols="65"
+                                  cols="77"
                                   rows="14"
                                   placeholder="Response"
                                   style="border: none; font-family: Consolas,monospace;"
@@ -257,7 +262,13 @@
 <nav id="nav">
     <div class="innertube">
         <ul>
-            <li><a href="#">Add User</a></li>
+            <li>
+                <a href="add-user.html"
+                   target="iframeApi"
+                   onclick="clearRequestResponseJson()">
+                    Add User
+                </a>
+            </li>
             <li>
                 <a href="generate-otp.html"
                    target="iframeApi"
@@ -265,10 +276,34 @@
                     Generate OTP
                 </a>
             </li>
-            <li><a href="#">Verify OTP</a></li>
-            <li><a href="#">Add Minimum KYC</a></li>
-            <li><a href="#">Add Virtual Card</a></li>
-            <li><a href="#">View Card</a></li>
+            <li>
+                <a href="verify-otp.html"
+                   target="iframeApi"
+                   onclick="clearRequestResponseJson()">
+                    Verify OTP
+                </a>
+            </li>
+            <li>
+                <a href="add-minimum-kyc.html"
+                   target="iframeApi"
+                   onclick="clearRequestResponseJson()">
+                    Add Minimum KYC
+                </a>
+            </li>
+            <li>
+                <a href="add-virtual-card.html"
+                   target="iframeApi"
+                   onclick="clearRequestResponseJson()">
+                    Add Virtual Card
+                </a>
+            </li>
+            <li>
+                <a href="view-card-details.html"
+                   target="iframeApi"
+                   onclick="clearRequestResponseJson()">
+                    View Card Details
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

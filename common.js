@@ -1,6 +1,5 @@
 function getApiUrl() {
     return window.parent.document.getElementById('apiUrl');
-    // return "http://openqa.tab.kitecash.in";
 }
 
 function getUserId() {
