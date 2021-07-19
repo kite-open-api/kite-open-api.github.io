@@ -168,7 +168,10 @@
             xhttp.open(httpMethod, baseUrl + apiEndpoint, true);
             xhttp.setRequestHeader("Content-type", "application/json");
             xhttp.setRequestHeader("Authorization", 'Basic ' + document.getElementById('basicAuthToken').value);
-            xhttp.setRequestHeader("UserId", document.getElementById('userId').value);
+            if (userIdRequired === 'true')
+                xhttp.setRequestHeader("UserId", document.getElementById('userId').value);
+            if (cardIdRequired === 'true')
+                apiEndpoint = apiEndpoint.replaceAll('CardId', document.getElementById('cardId').value);
             if (requestJson === 'null')
                 xhttp.send();
             else xhttp.send(requestJson);
