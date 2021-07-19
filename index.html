@@ -83,6 +83,7 @@
             height: 100%;
             width: 100%;
         }
+
         a:link {
             color: white;
         }
@@ -101,6 +102,7 @@
         a:active {
             color: white;
         }
+
         a {
             text-decoration: none;
             color: white;
@@ -126,7 +128,7 @@
             } else if (arr[0] === 'cardIdRequired') {
                 cardIdRequired = arr[1];
             } else if (arr[0] === 'send') {
-                if(validateFields()) {
+                if (validateFields()) {
                     invokeApi();
                 }
             }
@@ -134,13 +136,13 @@
 
         function validateFields() {
             const errorList = [];
-            if(document.getElementById('apiUrl').value.trim().length === 0)
+            if (document.getElementById('apiUrl').value.trim().length === 0)
                 errorList.push('API URL is required');
-            if(document.getElementById('basicAuthToken').value.trim().length === 0)
+            if (document.getElementById('basicAuthToken').value.trim().length === 0)
                 errorList.push('Basic Auth Token is required');
-            if(userIdRequired === 'true' && document.getElementById('userId').value.trim().length === 0)
+            if (userIdRequired === 'true' && document.getElementById('userId').value.trim().length === 0)
                 errorList.push('User ID  is required');
-            if(cardIdRequired === 'true' && document.getElementById('cardId').value.trim().length === 0)
+            if (cardIdRequired === 'true' && document.getElementById('cardId').value.trim().length === 0)
                 errorList.push('Card ID is required');
             if (errorList.length > 0) {
                 document.getElementById('requestJson').value = '• ' + errorList.join('\n• ');
@@ -169,6 +171,11 @@
             if (requestJson === 'null')
                 xhttp.send();
             else xhttp.send(requestJson);
+        }
+
+        function clearRequestResponseJson() {
+            document.getElementById('requestJson').value = '';
+            document.getElementById('responseJson').value = '';
         }
     </script>
 
@@ -213,28 +220,34 @@
 <main>
     <table width="100%" style="height: 100%">
         <tr>
-            <td width="50%">
+            <td width="40%">
                 <iframe id="iframeApi" name="iframeApi"
                         src="landing-page.html" width="100%" height="100%" frameborder="0"></iframe>
             </td>
-            <td width="50%" style="border-left: 1px solid #aaaaaa;">
+            <td width="60%" style="border-left: 1px solid #aaaaaa;">
                 <table width="100%">
-                    <tr style="height: 50%"><td>
+                    <tr style="height: 50%">
+                        <td>
                         <textarea name="requestJson"
                                   id="requestJson"
                                   cols="65"
                                   rows="14"
+                                  placeholder="Request"
                                   style="border: none; font-family: Consolas,monospace;"
                                   readonly></textarea>
-                    </td></tr>
-                    <tr style="height: 50%;"><td style="border-top: 1px solid #aaaaaa;">
+                        </td>
+                    </tr>
+                    <tr style="height: 50%;">
+                        <td style="border-top: 1px solid #aaaaaa;">
                         <textarea name="responseJson"
                                   id="responseJson"
                                   cols="65"
                                   rows="14"
+                                  placeholder="Response"
                                   style="border: none; font-family: Consolas,monospace;"
                                   readonly></textarea>
-                    </td></tr>
+                        </td>
+                    </tr>
                 </table>
             </td>
         </tr>
@@ -245,7 +258,13 @@
     <div class="innertube">
         <ul>
             <li><a href="#">Add User</a></li>
-            <li><a href="generate-otp.html" target="iframeApi">Generate OTP</a></li>
+            <li>
+                <a href="generate-otp.html"
+                   target="iframeApi"
+                   onclick="clearRequestResponseJson()">
+                    Generate OTP
+                </a>
+            </li>
             <li><a href="#">Verify OTP</a></li>
             <li><a href="#">Add Minimum KYC</a></li>
             <li><a href="#">Add Virtual Card</a></li>
