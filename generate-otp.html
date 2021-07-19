@@ -4,10 +4,6 @@
 </head>
 <div style="font-family: Sans-serif, serif; margin: 15px">
     <h2>Generate OTP</h2>
-    <input type="button" onclick="alert(getApiUrl().value)" value="API URL">
-    <input type="button" onclick="alert(getBasicAuthToken().value)" value="Basic Auth Token">
-    <input type="button" onclick="alert(getUserId().value)" value="User ID">
-    <input type="button" onclick="alert(getCardId().value)" value="Card ID">
-    <input type="button" onclick="window.top.postMessage('hemant B', '*')" value="Post It">
+    <input type="button" onclick="callApi('POST', '/v1/generate-otp', null)" value="Generate OTP">
 </div>
 </html>

@@ -86,11 +86,39 @@
 
     </style>
 
-<script type="application/javascript">
-    window.onmessage = function(e) {
-            alert(e.data);
-    };
-</script>
+    <script type="application/javascript">
+        var apiEndpoint;
+        var requestJson;
+        var httpMethod;
+        window.onmessage = function (e) {
+            console.log(e.data);
+            var arr = e.data.split('||');
+            if (arr[0] === 'apiEndpoint') {
+                apiEndpoint = arr[1];
+            } else if (arr[0] === 'requestJson') {
+                requestJson = arr[1];
+            } else if (arr[0] === 'httpMethod') {
+                httpMethod = arr[1];
+            } else if (arr[0] === 'send') {
+                invokeApi();
+            }
+        };
+
+        function invokeApi() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function () {
+                document.getElementById('responseJson').innerText = this.responseText;
+            }
+            var baseUrl = document.getElementById('apiUrl').value;
+            xhttp.open(httpMethod, baseUrl + apiEndpoint, true);
+            xhttp.setRequestHeader("Content-type", "application/json");
+            xhttp.setRequestHeader("Authorization", 'Basic ' + document.getElementById('basicAuthToken').value);
+            xhttp.setRequestHeader("UserId", document.getElementById('userId').value);
+            if (requestJson === 'null')
+                xhttp.send();
+            else xhttp.send(requestJson);
+        }
+    </script>
 
 </head>
 
@@ -129,7 +157,14 @@
 </header>
 
 <main>
-    <iframe src="generate-otp.html" frameborder="0"></iframe>
+    <table width="100%" border="1">
+        <tr>
+            <td style="width: 50%">
+                <iframe src="generate-otp.html" frameborder="0"></iframe>
+            </td>
+            <td style="width: 50%" id="responseJson"></td>
+        </tr>
+    </table>
 </main>
 
 <nav id="nav">
