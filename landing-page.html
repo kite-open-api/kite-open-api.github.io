@@ -1,0 +1,36 @@
+<html>
+<head>
+    <script src="common.js" type="application/javascript"></script>
+</head>
+<div style="font-family: Sans-serif, serif; font-size: 10pt; margin: 15px;">
+    <h2>Welcome!</h2>
+    Available API URLs
+    <br>
+    <table>
+        <tr>
+            <td>&nbsp;</td>
+            <td>•</td>
+            <td><input type="button" onclick="getApiUrl().value = 'http://opendev.tab.kitecash.in'" value="DEV"/></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>•</td>
+            <td><input type="button" onclick="getApiUrl().value = 'http://openqa.tab.kitecash.in'" value="QA"/></td>
+        </tr>
+    </table>
+    <br>
+    <hr>
+    This website runs on HTTPS but the API URL that you use might be on HTTP. Your browser may not allow AJAX calls from HTTPS based origin to HTTP based target. You'll need to configure your browser to allow AJAX calls to HTTP based URLs in order to proceed.
+    <hr>
+    <br>
+    Steps for unblocking HTTP based API URLs in Google Chrome
+    <br>
+    <br>Google Chrome
+    <br>⇢ Hamburger Menu
+    <br>&nbsp;⇢ Settings Menu
+    <br>&nbsp;&nbsp;⇢ Site Settings
+    <br>&nbsp;&nbsp;&nbsp;⇢ Insecure Content
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;⇢ Click Add button of Allow
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⇢ Add <span style="color: #2F2AB4">https://kite-open-api.github.io/</span>
+</div>
+</html>

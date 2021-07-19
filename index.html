@@ -135,7 +135,7 @@
             <td>
                 <label style="color: white" for="apiUrl">API URL</label>
                 <br>
-                <input size="25" type="text" id="apiUrl" value="http://openqa.tab.kitecash.in"/>
+                <input size="25" type="text" id="apiUrl"/>
             </td>
             <td>
                 <label style="color: white" for="basicAuthToken">Basic Auth Token</label>
@@ -160,10 +160,15 @@
     <table width="100%" style="height: 100%">
         <tr>
             <td width="50%">
-                <iframe src="generate-otp.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe id="iframeApi" src="landing-page.html" width="100%" height="100%" frameborder="0"></iframe>
             </td>
-            <td width="50%">
-                <textarea name="responseJson" id="responseJson" cols="65" rows="30" style="border: none" readonly></textarea>
+            <td width="50%" style="border-left: 1px solid #aaaaaa;">
+                <textarea name="responseJson"
+                          id="responseJson"
+                          cols="65"
+                          rows="30"
+                          style="border: none; font-family: Sans-serif, serif;"
+                          readonly></textarea>
             </td>
         </tr>
     </table>

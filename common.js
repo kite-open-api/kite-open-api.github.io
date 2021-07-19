@@ -1,3 +1,7 @@
+function getApiUrl() {
+    return window.parent.document.getElementById('userId');
+}
+
 function getUserId() {
     return window.parent.document.getElementById('userId');
 }
