@@ -138,12 +138,12 @@
                 errorList.push('Please enter API URL');
             if(document.getElementById('basicAuthToken').value.trim().length === 0)
                 errorList.push('Please enter Basic Auth Token');
-            if(userIdRequired && document.getElementById('userId').value.trim().length === 0)
+            if(userIdRequired === 'true' && document.getElementById('userId').value.trim().length === 0)
                 errorList.push('Please enter User ID or call the Add User API for automatic population');
-            if(cardIdRequired && document.getElementById('cardId').value.trim().length === 0)
+            if(cardIdRequired === 'true' && document.getElementById('cardId').value.trim().length === 0)
                 errorList.push('Please enter Card ID or call the Add Card API for automatic population');
             if (errorList.length > 0) {
-                document.getElementById('responseJson').value = errorList.join('\n');
+                document.getElementById('responseJson').value = '• ' + errorList.join('\n• ');
                 return false;
             }
             return true;
