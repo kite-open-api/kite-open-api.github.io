@@ -1,10 +1,7 @@
 <script>
-    function getAuthToken() {
-        const authToken = window.parent.document.getElementById('basicAuthToken');
-        return authToken.innerText;
-    }
+
 </script>
 <div style="font-family: Sans-serif, serif; margin: 15px">
 <h2>Generate OTP</h2>
-    <input type="button" onclick="alert(getAuthToken())">
+    <input type="button" onclick="alert(window.parent.document.getElementById('basicAuthToken').innerText)">
 </div>
