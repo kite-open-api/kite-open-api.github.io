@@ -1,6 +1,7 @@
 <script>
     function getAuthToken() {
-        return window.parent.document.getElementById('basicAuthToken').value;
+        const authToken = <HTMLInputElement>(window.parent.document.getElementById('basicAuthToken'));
+        return authToken.value;
     }
 </script>
 <div style="font-family: Sans-serif, serif; margin: 15px">
