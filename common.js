@@ -12,7 +12,8 @@ function getCardId() {
 }
 
 function callApi(httpMethod, apiEndpoint, requestJson, userIdRequired, cardIdRequired) {
-    window.parent.document.getElementById('responseJson').value = 'Processing...';
+    window.parent.document.getElementById('requestJson').value = 'Validating...';
+    window.parent.document.getElementById('responseJson').value = '';
     window.top.postMessage('httpMethod||' + httpMethod, '*');
     window.top.postMessage('apiEndpoint||' + apiEndpoint, '*');
     window.top.postMessage('requestJson||' + requestJson, '*');

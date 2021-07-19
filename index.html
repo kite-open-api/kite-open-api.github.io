@@ -135,17 +135,23 @@
         function validateFields() {
             const errorList = [];
             if(document.getElementById('apiUrl').value.trim().length === 0)
-                errorList.push('Please enter API URL');
+                errorList.push('API URL is required');
             if(document.getElementById('basicAuthToken').value.trim().length === 0)
-                errorList.push('Please enter Basic Auth Token');
+                errorList.push('Basic Auth Token is required');
             if(userIdRequired === 'true' && document.getElementById('userId').value.trim().length === 0)
-                errorList.push('Please enter User ID or call the Add User API for automatic population');
+                errorList.push('User ID  is required');
             if(cardIdRequired === 'true' && document.getElementById('cardId').value.trim().length === 0)
-                errorList.push('Please enter Card ID or call the Add Card API for automatic population');
+                errorList.push('Card ID is required');
             if (errorList.length > 0) {
-                document.getElementById('responseJson').value = '• ' + errorList.join('\n• ');
+                document.getElementById('requestJson').value = '• ' + errorList.join('\n• ');
                 return false;
             }
+            var requestDetails = httpMethod + ' ' + apiEndpoint;
+            if (requestJson !== 'null') {
+                requestDetails += '\n' + JSON.stringify(JSON.parse(requestJson), undefined, 1);
+            }
+            document.getElementById('requestJson').value = requestDetails;
+            document.getElementById('responseJson').value = 'Processing...';
             return true;
         }
 
@@ -176,7 +182,7 @@
             <td>
                 <div id="logo">
                     <h1 style="color: white">
-                        <a href="https://kite-open-api.github.io/">Open API</a>
+                        <a href="landing-page.html" target="iframeApi">Open API</a>
                     </h1>
                 </div>
             </td>
@@ -212,12 +218,24 @@
                         src="landing-page.html" width="100%" height="100%" frameborder="0"></iframe>
             </td>
             <td width="50%" style="border-left: 1px solid #aaaaaa;">
-                <textarea name="responseJson"
-                          id="responseJson"
-                          cols="65"
-                          rows="30"
-                          style="border: none; font-family: Consolas,monospace;"
-                          readonly></textarea>
+                <table width="100%">
+                    <tr style="height: 50%"><td>
+                        <textarea name="requestJson"
+                                  id="requestJson"
+                                  cols="65"
+                                  rows="14"
+                                  style="border: none; font-family: Consolas,monospace;"
+                                  readonly></textarea>
+                    </td></tr>
+                    <tr style="height: 50%;"><td style="border-top: 1px solid #aaaaaa;">
+                        <textarea name="responseJson"
+                                  id="responseJson"
+                                  cols="65"
+                                  rows="14"
+                                  style="border: none; font-family: Consolas,monospace;"
+                                  readonly></textarea>
+                    </td></tr>
+                </table>
             </td>
         </tr>
     </table>
