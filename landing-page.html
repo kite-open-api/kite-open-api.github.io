@@ -1,6 +1,31 @@
 <html>
 <head>
     <script src="common.js" type="application/javascript"></script>
+    <style>
+        a:link {
+            color: #2F2AB4;
+        }
+
+        /* visited link */
+        a:visited {
+            color: #2F2AB4;
+        }
+
+        /* mouse over link */
+        a:hover {
+            color: #0000ff;
+        }
+
+        /* selected link */
+        a:active {
+            color: #2F2AB4;
+        }
+
+        a {
+            text-decoration: none;
+            color: #2F2AB4;
+        }
+    </style>
 </head>
 <div style="font-family: Sans-serif, serif; font-size: 10pt; margin: 15px;">
     <h2>Welcome!</h2>
@@ -23,7 +48,7 @@
     This website runs on HTTPS but the API URL that you use might be on HTTP. Your browser may not allow AJAX calls from HTTPS based origin to HTTP based target. You'll need to configure your browser to allow AJAX calls to HTTP based URLs in order to proceed.
     <hr>
     <br>
-    Steps for unblocking HTTP based API URLs in Google Chrome
+    Unblocking HTTP AJAX calls in Google Chrome
     <br>
     <br>Google Chrome
     <br>⇢ Hamburger Menu
@@ -31,6 +56,11 @@
     <br>&nbsp;&nbsp;⇢ Site Settings
     <br>&nbsp;&nbsp;&nbsp;⇢ Insecure Content
     <br>&nbsp;&nbsp;&nbsp;&nbsp;⇢ Click Add button of Allow
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⇢ Add <span style="color: #2F2AB4">https://kite-open-api.github.io/</span>
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⇢ Add <a href="https://kite-open-api.github.io/" target="_blank">https://kite-open-api.github.io</a>
+    <br>
+    <br>
+    <hr>
+    Click <a href="https://documenter.getpostman.com/view/3016307/SVYotehv" target="_blank">here</a> to view Open API documentation
+    <hr>
 </div>
 </html>
