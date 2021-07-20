@@ -3,33 +3,12 @@
     <script src="common.js" type="application/javascript"></script>
     <script type="application/javascript">
         function invoke() {
-            const otpPurpose = document.getElementById('otpPurpose').value;
-            callApi('POST', '/v1/generate-otp/' + otpPurpose, null, true, false);
+            callApi('GET', '/v1/card/CardId', null, true, true);
         }
     </script>
 </head>
 <div style="font-family: Sans-serif, serif; margin: 15px;">
-    <h2>View Card Details</h2>
-    <table width="100%">
-        <tr>
-            <td>OTP Purpose</td>
-            <td>
-                <select id='otpPurpose'>
-                    <option value="USER_KYC">User KYC</option>
-                    <option value="FORGOT_PASSWORD">Forgot Password</option>
-                    <option value="RESET_TEMP_PASSWORD">Reset Temp Password</option>
-                    <option value="LOGIN">Login</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">&nbsp;</td>
-        </tr>
-        <tr>
-            <td colspan="2" align="center">
-                <input type="button" onclick="invoke()" value="Submit">
-            </td>
-        </tr>
-    </table>
+    <h2>Get Card Details</h2>
+    <input type="button" onClick="invoke()" value="Submit">
 </div>
 </html>

@@ -2,9 +2,9 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Kite Open API">
+    <meta name="description" content="Kite Open API Toolkit">
     <meta name="keywords" content="kite,open,api">
-    <meta property="og:title" content="Kite Open API">
+    <meta property="og:title" content="Kite Open API Toolkit">
     <meta property="og:image" content="logo-kite-tab.png">
     <meta property="og:url" content="https://kite-open-api.github.io/">
     <title>Open API Toolkit</title>
@@ -153,6 +153,9 @@
                 document.getElementById('requestJson').value = '• ' + errorList.join('\n• ');
                 return false;
             }
+            if (cardIdRequired === 'true') {
+                apiEndpoint = apiEndpoint.replaceAll('CardId', document.getElementById('cardId').value);
+            }
             let requestDetails = httpMethod + ' ' + apiEndpoint;
             if (requestJson !== 'null') {
                 requestDetails += '\n' + JSON.stringify(JSON.parse(requestJson), undefined, 1);
@@ -178,8 +181,6 @@
             xmlHttp.setRequestHeader("Authorization", 'Basic ' + document.getElementById('basicAuthToken').value);
             if (userIdRequired === 'true')
                 xmlHttp.setRequestHeader("UserId", document.getElementById('userId').value);
-            if (cardIdRequired === 'true')
-                apiEndpoint = apiEndpoint.replaceAll('CardId', document.getElementById('cardId').value);
             if (requestJson === 'null')
                 xmlHttp.send();
             else xmlHttp.send(requestJson);
@@ -224,7 +225,7 @@
             <td>
                 <label style="color: white" for="basicAuthToken">Basic Auth Token</label>
                 <br>
-                <input size="25" type="password" id="basicAuthToken" value="dW5vY29pbjpEbnowIWFkbW4lOCMy"/>
+                <input size="25" type="password" id="basicAuthToken"/>
             </td>
             <td>
                 <label style="color: white" for="userId">User ID</label>
@@ -257,7 +258,9 @@
                                   rows="14"
                                   placeholder="Request"
                                   style="border: none; font-family: Consolas,monospace;"
-                                  readonly></textarea>
+                                  readonly>This website runs on HTTPS but the API URL that you use might be on HTTP.
+Your browser may block AJAX calls from HTTPS based origin to HTTP based target.
+Please configure your browser to allow insecure AJAX calls for this website.</textarea>
                         </td>
                     </tr>
                     <tr style="height: 50%;">
@@ -268,7 +271,15 @@
                                   rows="14"
                                   placeholder="Response"
                                   style="border: none; font-family: Consolas,monospace;"
-                                  readonly></textarea>
+                                  readonly>Steps to unblock HTTP AJAX calls in Google Chrome
+
+    Google Chrome
+    ⇢ Hamburger Menu
+     ⇢ Settings Menu
+      ⇢ Site Settings
+       ⇢ Insecure Content
+        ⇢ Click Add button of Allow
+         ⇢ Add https://kite-open-api.github.io</textarea>
                         </td>
                     </tr>
                 </table>

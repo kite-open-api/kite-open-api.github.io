@@ -3,8 +3,12 @@
     <script src="common.js" type="application/javascript"></script>
     <script type="application/javascript">
         function invoke() {
-            const otpPurpose = document.getElementById('otpPurpose').value;
-            callApi('POST', '/v1/generate-otp/' + otpPurpose, null, true, false);
+            let jsonStr =
+                ['firstName', 'lastName', 'emailId', 'mobileNo', 'employeeId']
+                    .map(id => '"' + id + '" : "' + document.getElementById(id).value + '"')
+                    .join(',\n');
+            jsonStr = '{\n' + jsonStr + '\n}';
+            callApi('POST', '/v1/user/', jsonStr, false, false);
         }
     </script>
 </head>
@@ -12,15 +16,24 @@
     <h2>Add User</h2>
     <table width="100%">
         <tr>
-            <td>OTP Purpose</td>
-            <td>
-                <select id='otpPurpose'>
-                    <option value="USER_KYC">User KYC</option>
-                    <option value="FORGOT_PASSWORD">Forgot Password</option>
-                    <option value="RESET_TEMP_PASSWORD">Reset Temp Password</option>
-                    <option value="LOGIN">Login</option>
-                </select>
-            </td>
+            <td>First Name</td>
+            <td><input type="text" id="firstName"></td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td><input type="text" id="lastName"></td>
+        </tr>
+        <tr>
+            <td>Email Id</td>
+            <td><input type="text" id="emailId"></td>
+        </tr>
+        <tr>
+            <td>Mobile Number</td>
+            <td><input type="text" id="mobileNo"></td>
+        </tr>
+        <tr>
+            <td>Employee Id</td>
+            <td><input type="text" id="employeeId"></td>
         </tr>
         <tr>
             <td colspan="2">&nbsp;</td>

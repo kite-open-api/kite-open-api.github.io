@@ -1,6 +1,35 @@
 <html>
 <head>
     <script src="common.js" type="application/javascript"></script>
+    <script type="application/javascript">
+        function populateFields(env) {
+            let apiUrl, authToken, userId, cardId;
+            if (env === 'dev') {
+                apiUrl = 'http://opendev.tab.kitecash.in';
+                authToken = 'dW5vY29pbjpEbnowIWFkbW4lOCMy';
+                userId = null;
+                cardId = null;
+            } else if (env === 'qa') {
+                apiUrl = 'http://openqa.tab.kitecash.in';
+                authToken = 'dW5vY29pbjpEbnowIWFkbW4lOCMy';
+                userId = '132f15a0-62a7-4b1c-abe4-8a046a0a4beb';
+                cardId = '4847f32b-606a-44dd-8c07-f97c9628f748';
+            } else if (env === 'stage') {
+                apiUrl = 'https://stage.kitecash.in/open-api';
+                authToken = null;
+                userId = null;
+                cardId = null;
+            }
+            getElement('apiUrl').value = apiUrl;
+            getElement('basicAuthToken').value = authToken;
+            getElement('userId').value = userId;
+            getElement('cardId').value = cardId;
+        }
+
+        function getElement(id) {
+            return window.parent.document.getElementById(id);
+        }
+    </script>
     <style>
         a:link {
             color: #2F2AB4;
@@ -25,39 +54,23 @@
             text-decoration: none;
             color: #2F2AB4;
         }
+
+        input {
+            cursor: pointer;
+        }
     </style>
 </head>
-<div style="font-family: Sans-serif, serif; font-size: 10pt; margin: 15px;">
+<div style="font-family: Sans-serif, serif; font-size: 12pt; margin: 15px;">
     <h2>Welcome!</h2>
-    <table>
-        <tr>
-            <td>Select environment</td>
-            <td>&nbsp;</td>
-            <td><input type="button" onclick="getApiUrl().value = 'http://opendev.tab.kitecash.in'" value="DEV"/></td>
-            <td>&nbsp;</td>
-            <td><input type="button" onclick="getApiUrl().value = 'http://openqa.tab.kitecash.in'" value="QA"/></td>
-            <td>&nbsp;</td>
-            <td><input type="button" onclick="getApiUrl().value = 'https://stage.kitecash.in/open-api'" value="STAGE"/></td>
-        </tr>
-    </table>
-    <br>
-    <hr>
-    This website runs on HTTPS but the API URL that you use might be on HTTP. Your browser may not allow AJAX calls from HTTPS based origin to HTTP based target. You'll need to configure your browser to allow AJAX calls to HTTP based URLs in order to proceed.
-    <hr>
-    <br>
-    Unblocking HTTP AJAX calls in Google Chrome
-    <br>
-    <br>Google Chrome
-    <br>⇢ Hamburger Menu
-    <br>&nbsp;⇢ Settings Menu
-    <br>&nbsp;&nbsp;⇢ Site Settings
-    <br>&nbsp;&nbsp;&nbsp;⇢ Insecure Content
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;⇢ Click Add button of Allow
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⇢ Add <a href="https://kite-open-api.github.io/" target="_blank">https://kite-open-api.github.io</a>
-    <br>
-    <br>
-    <hr>
-    Click <a href="https://documenter.getpostman.com/view/3016307/SVYotehv" target="_blank">here</a> to view Open API documentation
-    <hr>
+    Select environment
+    &nbsp;
+    <input type="button" onclick="populateFields('dev')" value="DEV"/>
+    &nbsp;
+    <input type="button" onclick="populateFields('qa')" value="QA"/>
+    &nbsp;
+    <input type="button" onclick="populateFields('stage')" value="STAGE"/>
+    <br><br>
+    Click <a href="https://documenter.getpostman.com/view/3016307/SVYotehv" target="_blank">here</a> to view Open API
+    documentation
 </div>
 </html>

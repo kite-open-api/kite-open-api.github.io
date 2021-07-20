@@ -1,15 +1,3 @@
-function getApiUrl() {
-    return window.parent.document.getElementById('apiUrl');
-}
-
-function getUserId() {
-    return window.parent.document.getElementById('userId');
-}
-
-function getCardId() {
-    return window.parent.document.getElementById('cardId');
-}
-
 function callApi(httpMethod, apiEndpoint, requestJson, userIdRequired, cardIdRequired) {
     window.parent.document.getElementById('requestJson').value = 'Validating...';
     window.parent.document.getElementById('responseJson').value = '';
