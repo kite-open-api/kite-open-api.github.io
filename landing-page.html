@@ -3,22 +3,17 @@
     <script src="common.js" type="application/javascript"></script>
     <script type="application/javascript">
         function populateFields(env) {
-            let apiUrl, authToken, userId, cardId;
+            let apiUrl = null, authToken = null, userId = null, cardId = null;
             if (env === 'dev') {
                 apiUrl = 'http://opendev.tab.kitecash.in';
-                authToken = 'dW5vY29pbjpEbnowIWFkbW4lOCMy';
-                userId = null;
-                cardId = null;
+                // authToken = 'dW5vY29pbjpEbnowIWFkbW4lOCMy';
             } else if (env === 'qa') {
                 apiUrl = 'http://openqa.tab.kitecash.in';
-                authToken = 'dW5vY29pbjpEbnowIWFkbW4lOCMy';
-                userId = '132f15a0-62a7-4b1c-abe4-8a046a0a4beb';
-                cardId = '4847f32b-606a-44dd-8c07-f97c9628f748';
+                //authToken = 'dW5vY29pbjpEbnowIWFkbW4lOCMy';
+                //userId = '132f15a0-62a7-4b1c-abe4-8a046a0a4beb';
+                //cardId = '4847f32b-606a-44dd-8c07-f97c9628f748';
             } else if (env === 'stage') {
                 apiUrl = 'https://stage.kitecash.in/open-api';
-                authToken = null;
-                userId = null;
-                cardId = null;
             }
             getElement('apiUrl').value = apiUrl;
             getElement('basicAuthToken').value = authToken;
