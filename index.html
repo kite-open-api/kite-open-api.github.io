@@ -7,7 +7,7 @@
     <meta property="og:title" content="Kite Open API">
     <meta property="og:image" content="logo-kite-tab.png">
     <meta property="og:url" content="https://kite-open-api.github.io/">
-    <title>Kite Open API</title>
+    <title>Open API Toolbox</title>
     <link rel="shortcut icon" type="image/x-icon" href="logo-kite-tab.png"/>
     <style type="text/css">
 
@@ -111,13 +111,17 @@
     </style>
 
     <script type="application/javascript">
-        var apiEndpoint;
-        var requestJson;
-        var httpMethod;
-        var userIdRequired
-        var cardIdRequired
+        let apiEndpoint;
+        let requestJson;
+        let httpMethod;
+        let userIdRequired
+        let cardIdRequired
+
+        let activeApiName = null;
+        let map = new Map();
+
         window.onmessage = function (e) {
-            var arr = e.data.split('||');
+            let arr = e.data.split('||');
             if (arr[0] === 'apiEndpoint') {
                 apiEndpoint = arr[1];
             } else if (arr[0] === 'requestJson') {
@@ -149,7 +153,7 @@
                 document.getElementById('requestJson').value = '• ' + errorList.join('\n• ');
                 return false;
             }
-            var requestDetails = httpMethod + ' ' + apiEndpoint;
+            let requestDetails = httpMethod + ' ' + apiEndpoint;
             if (requestJson !== 'null') {
                 requestDetails += '\n' + JSON.stringify(JSON.parse(requestJson), undefined, 1);
             }
@@ -159,27 +163,38 @@
         }
 
         function invokeApi() {
-            const xhttp = new XMLHttpRequest();
-            xhttp.onload = function () {
+            const xmlHttp = new XMLHttpRequest();
+            xmlHttp.onload = function () {
                 const json = JSON.parse(this.responseText);
                 document.getElementById('responseJson').value = JSON.stringify(json, undefined, 1);
+                let innerMap = new Map();
+                innerMap.set('request', document.getElementById('requestJson').value);
+                innerMap.set('response', document.getElementById('responseJson').value);
+                map.set(activeApiName, innerMap);
             }
-            var baseUrl = document.getElementById('apiUrl').value;
-            xhttp.open(httpMethod, baseUrl + apiEndpoint, true);
-            xhttp.setRequestHeader("Content-type", "application/json");
-            xhttp.setRequestHeader("Authorization", 'Basic ' + document.getElementById('basicAuthToken').value);
+            let baseUrl = document.getElementById('apiUrl').value;
+            xmlHttp.open(httpMethod, baseUrl + apiEndpoint, true);
+            xmlHttp.setRequestHeader("Content-type", "application/json");
+            xmlHttp.setRequestHeader("Authorization", 'Basic ' + document.getElementById('basicAuthToken').value);
             if (userIdRequired === 'true')
-                xhttp.setRequestHeader("UserId", document.getElementById('userId').value);
+                xmlHttp.setRequestHeader("UserId", document.getElementById('userId').value);
             if (cardIdRequired === 'true')
                 apiEndpoint = apiEndpoint.replaceAll('CardId', document.getElementById('cardId').value);
             if (requestJson === 'null')
-                xhttp.send();
-            else xhttp.send(requestJson);
+                xmlHttp.send();
+            else xmlHttp.send(requestJson);
         }
 
-        function clearRequestResponseJson() {
-            document.getElementById('requestJson').value = '';
-            document.getElementById('responseJson').value = '';
+        function setRequestResponseJson(apiName) {
+            let request = null, response = null;
+            let activeApi = map.get(apiName);
+            if (activeApi) {
+                request = activeApi.get('request');
+                response = activeApi.get('response');
+            }
+            activeApiName = apiName;
+            document.getElementById('requestJson').value = request;
+            document.getElementById('responseJson').value = response;
         }
     </script>
 
@@ -194,7 +209,7 @@
                 <div id="logo">
                     <span style="color: white; font-size: 26pt;">
                         <a href="landing-page.html"
-                           onclick="clearRequestResponseJson()"
+                           onclick="setRequestResponseJson('open-api')"
                            target="iframeApi">
                            Open API
                         </a>
@@ -268,42 +283,42 @@
             <li>
                 <a href="add-user.html"
                    target="iframeApi"
-                   onclick="clearRequestResponseJson()">
+                   onclick="setRequestResponseJson('add-user')">
                     Add User
                 </a>
             </li>
             <li>
                 <a href="generate-otp.html"
                    target="iframeApi"
-                   onclick="clearRequestResponseJson()">
+                   onclick="setRequestResponseJson('generate-otp')">
                     Generate OTP
                 </a>
             </li>
             <li>
                 <a href="verify-otp.html"
                    target="iframeApi"
-                   onclick="clearRequestResponseJson()">
+                   onclick="setRequestResponseJson('verify-otp')">
                     Verify OTP
                 </a>
             </li>
             <li>
                 <a href="add-minimum-kyc.html"
                    target="iframeApi"
-                   onclick="clearRequestResponseJson()">
+                   onclick="setRequestResponseJson('add-minimum-kyc')">
                     Add Minimum KYC
                 </a>
             </li>
             <li>
                 <a href="add-virtual-card.html"
                    target="iframeApi"
-                   onclick="clearRequestResponseJson()">
+                   onclick="setRequestResponseJson('add-virtual-card')">
                     Add Virtual Card
                 </a>
             </li>
             <li>
                 <a href="view-card-details.html"
                    target="iframeApi"
-                   onclick="clearRequestResponseJson()">
+                   onclick="setRequestResponseJson('view-card-details')">
                     View Card Details
                 </a>
             </li>
