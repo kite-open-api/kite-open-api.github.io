@@ -120,9 +120,8 @@
 
         window.onload = function () {
             if (isMobileDevice()) {
-                document.getElementById('mobileBodyId').style.display = 'block';
-            } else {
-                document.getElementById('pcBodyId').style.display = 'block';
+                const bodyEle = document.getElementById('bodyId');
+                bodyEle.innerHTML = 'Please open this website on PC browser';
             }
         }
 
@@ -215,12 +214,7 @@
 
 </head>
 
-<body id="mobileBodyId" style="display: none">
-<br><br>
-<h1>Please open this website on PC browser</h1>
-</body>
-
-<body id="pcBodyId" style="display: none">
+<body id="bodyId">
 
 <header id="header">
     <table width="100%">
