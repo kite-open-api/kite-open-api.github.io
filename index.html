@@ -120,9 +120,9 @@
 
         window.onload = function () {
             if (isMobileDevice()) {
-                document.getElementById('spanId').style.display = 'block';
+                document.getElementById('mobileBodyId').style.display = 'block';
             } else {
-                document.getElementById('bodyId').style.display = 'block';
+                document.getElementById('pcBodyId').style.display = 'block';
             }
         }
 
@@ -215,9 +215,12 @@
 
 </head>
 
-<span id="spanId" style="display: none">Please open this website on PC browser</span>
+<body id="mobileBodyId" style="display: none">
+<br><br>
+<h1>Please open this website on PC browser</h1>
+</body>
 
-<body id="bodyId" style="display: none">
+<body id="pcBodyId" style="display: none">
 
 <header id="header">
     <table width="100%">
