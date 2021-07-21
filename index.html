@@ -119,7 +119,7 @@
         let map = new Map();
 
         window.onload = function () {
-            if (!isMobileDevice()) {
+            if (isMobileDevice()) {
                 const bodyEle = document.getElementById('bodyId');
                 bodyEle.innerHTML = '<br><br><br><table width="100%"><tr><td align="center"><h1>Please open this website on PC browser</h1></td></tr></table>';
             }
