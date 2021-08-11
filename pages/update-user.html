@@ -3,12 +3,15 @@
     <script src="../common.js" type="application/javascript"></script>
     <script type="application/javascript">
         function invoke() {
-            let jsonStr =
-                ['firstName', 'lastName', 'emailId', 'mobileNo', 'employeeId']
-                    .map(id => '"' + id + '" : "' + document.getElementById(id).value + '"')
-                    .join(',\n');
-            jsonStr = '{\n' + jsonStr + '\n}';
-            callApi('PATCH', '/v1/user/', jsonStr, true, false);
+            let json = {};
+            
+            ['firstName', 'lastName', 'emailId', 'mobileNo', 'employeeId'].forEach(field => {
+                const val = document.getElementById(field).value;
+                if(val.length) {
+                    json[field] = val;
+                }
+            })
+            callApi('PATCH', '/v1/user/', JSON.stringify(json), true, false);
         }
     </script>
 </head>

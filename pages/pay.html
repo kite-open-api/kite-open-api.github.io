@@ -9,7 +9,10 @@
           const json = {};
 
           ['amount', 'vpa', 'vpaUrl', 'externalReferenceId', 'comment'].forEach(field => {
-            json[field] = document.getElementById(field).value;
+            const val = document.getElementById(field).value;
+            if(val.length) {
+                json[field] = val;
+            }
           })
 
           callApi('POST', '/v1/pay', JSON.stringify(json), true, false);

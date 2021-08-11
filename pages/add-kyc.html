@@ -1,5 +1,3 @@
-<!-- it is only taking 1 document url right now.-->
-
 <html>
 <head>
     <script src="../common.js" type="application/javascript"></script>
@@ -16,11 +14,12 @@
         function invoke() {
           let json = {};
 
+          json['documentURLs'] = document.getElementById('documentUrls').value.trim().split("\n");
+
           ['address1', 'address2', 'city', 'state', 'zipCode', 'firstName', 'lastName'].forEach(field => {
             json[field] = document.getElementById(field).value;
           })
 
-          json['documentUrls'] = [document.getElementById('documentUrls').value]
           json['dateOfBirth'] = formatDate(document.getElementById('dateOfBirth').value);
           
           const addressTypeFields = document.getElementsByName('addressType')
@@ -54,7 +53,7 @@
         
         <tr>
           <td>Document URL</td>
-          <td><input type="text" id="documentUrls"></td>
+          <td><textarea id="documentUrls" style="width: 100%;min-height: 100px; overflow: scroll; resize: none;"></textarea></td>
         </tr>
         <tr>
           <td>Address Line 1</td>
