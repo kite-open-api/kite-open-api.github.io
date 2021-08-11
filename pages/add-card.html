@@ -1,0 +1,47 @@
+<html>
+<head>
+    <script src="../common.js" type="application/javascript"></script>
+    <script type="application/javascript">
+    
+        function formatDate(value) {
+            let date = new Date(value);
+            const day = date.toLocaleString('default', { day: '2-digit' });
+            const month = date.toLocaleString('default', { month: 'short' });
+            const year = date.toLocaleString('default', { year: 'numeric' });
+            return day + '-' + month + '-' + year;
+        }
+        
+        function invoke() {
+          let json = {};
+
+          ['cardProxyNumber', 'bin'].forEach(field => {
+            json[field] = document.getElementById(field).value;
+          })
+
+          callApi('POST', '/v1/card', JSON.stringify(json), true, false);
+        }
+    </script>
+</head>
+<div style="font-family: Calibri, serif; margin: 15px;">
+    <h2>Add KYC</h2>
+    <table width="100%">
+        <tr>
+          <td>BIN</td>
+          <td><input type="number" id="bin"></td>
+        </tr>
+        <tr>
+          <td>Card Proxy Number</td>
+          <td><input type="number" id="cardProxyNumber"></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2">&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="button" onclick="invoke()" value="Submit">
+            </td>
+        </tr>
+    </table>
+</div>
+</html>

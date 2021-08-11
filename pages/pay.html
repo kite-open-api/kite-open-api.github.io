@@ -1,0 +1,52 @@
+<!-- Is showing error as only one of vpa or vpaUrl is reqd and the other one should automatically send null. -->
+
+<html>
+<head>
+    <script src="../common.js" type="application/javascript"></script>
+    <script type="application/javascript">
+        
+        function invoke() {
+          const json = {};
+
+          ['amount', 'vpa', 'vpaUrl', 'externalReferenceId', 'comment'].forEach(field => {
+            json[field] = document.getElementById(field).value;
+          })
+
+          callApi('POST', '/v1/pay', JSON.stringify(json), true, false);
+        }
+    </script>
+</head>
+<div style="font-family: Calibri, serif; margin: 15px;">
+    <h2>Initiate Payment</h2>
+    <table width="100%">
+        <tr>
+          <td>Amount</td>
+          <td><input type="text" id="amount"></td>
+        </tr>
+        <tr>
+          <td>VPA</td>
+          <td><input type="text" id="vpa"></td>
+        </tr>
+        <tr>
+          <td>VPA URL</td>
+          <td><input type="text" id="vpaUrl"></td>
+        </tr>
+        <tr>
+          <td>External Reference ID</td>
+          <td><input type="text" id="externalReferenceId"></td>
+        </tr>
+        <tr>
+          <td>Comment</td>
+          <td><input type="text" id="comment"></td>
+        </tr>
+        <tr>
+          <td colspan="2">&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="button" onclick="invoke()" value="Submit">
+            </td>
+        </tr>
+    </table>
+</div>
+</html>

@@ -1,0 +1,108 @@
+<!-- it is only taking 1 document url right now.-->
+
+<html>
+<head>
+    <script src="../common.js" type="application/javascript"></script>
+    <script type="application/javascript">
+    
+        function formatDate(value) {
+            let date = new Date(value);
+            const day = date.toLocaleString('default', { day: '2-digit' });
+            const month = date.toLocaleString('default', { month: 'short' });
+            const year = date.toLocaleString('default', { year: 'numeric' });
+            return day + '-' + month + '-' + year;
+        }
+        
+        function invoke() {
+          let json = {};
+
+          ['address1', 'address2', 'city', 'state', 'zipCode', 'firstName', 'lastName'].forEach(field => {
+            json[field] = document.getElementById(field).value;
+          })
+
+          json['documentUrls'] = [document.getElementById('documentUrls').value]
+          json['dateOfBirth'] = formatDate(document.getElementById('dateOfBirth').value);
+          
+          const addressTypeFields = document.getElementsByName('addressType')
+          for(const field of addressTypeFields) {
+            if(field.checked) {
+              json['addressType'] = field.value
+            }
+          }
+
+          const genderFields = document.getElementsByName('gender')
+          for(const field of genderFields) {
+            if(field.checked) {
+              json['gender'] = field.value
+            }
+          }
+          callApi('POST', '/v1/kyc/', JSON.stringify(json), true, false);
+        }
+    </script>
+</head>
+<div style="font-family: Calibri, serif; margin: 15px;">
+    <h2>Add KYC</h2>
+    <table width="100%">
+        <tr>
+          <td>Address Type</td>
+          <td id="addressType">
+            <input type="radio" value="RESIDENTIAL" name="addressType">RESIDENTIAL
+            <input type="radio" value="BILLING" name="addressType">BILLING
+            <input type="radio" value="OTHER" name="addressType">OTHER
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Document URL</td>
+          <td><input type="text" id="documentUrls"></td>
+        </tr>
+        <tr>
+          <td>Address Line 1</td>
+          <td><input type="text" id="address1"></td>
+        </tr>
+        <tr>
+          <td>Address Line 2</td>
+          <td><input type="text" id="address2"></td>
+        </tr>
+        <tr>
+          <td>City</td>
+          <td><input type="text" id="city"></td>
+        </tr>
+        <tr>
+          <td>State</td>
+          <td><input type="text" id="state"></td>
+        </tr>
+        <tr>
+          <td>Zip Code</td>
+          <td><input type="text" id="zipCode"></td>
+        </tr>
+        <tr>
+          <td>Date of Birth</td>
+          <td><input type="date" id="dateOfBirth"></td>
+        </tr>
+        <tr>
+          <td>First Name</td>
+          <td><input type="text" id="firstName"></td>
+        </tr>
+        <tr>
+          <td>Last Name</td>
+          <td><input type="text" id="lastName"></td>
+        </tr>
+        <tr>
+          <td>Gender</td>
+          <td id="gender">
+            <input type="radio" value="MALE" name="gender">MALE
+            <input type="radio" value="FEMALE" name="gender">FEMALE
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="button" onclick="invoke()" value="Submit">
+            </td>
+        </tr>
+    </table>
+</div>
+</html>

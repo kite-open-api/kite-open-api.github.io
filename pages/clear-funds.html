@@ -1,0 +1,15 @@
+<html>
+<head>
+    <script src="../common.js" type="application/javascript"></script>
+    <script type="application/javascript">
+        function invoke() {
+            callApi('DEL', '/v1/card/CardId/funds', null, true, true);
+        }
+        
+    </script>
+</head>
+<div style="font-family: Calibri, serif; margin: 15px;">
+    <h2>Clear Funds</h2>
+    <input type="button" onclick="invoke()" value="Submit">
+</div>
+</html>
