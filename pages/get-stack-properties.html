@@ -1,0 +1,30 @@
+<html>
+<head>
+    <script src="../common.js" type="application/javascript"></script>
+    <script type="application/javascript">
+        function invoke() {
+            const deviceType = document.getElementById("deviceType").value;
+            callApi('GET', '/v1/configurations/' + deviceType, null, true, false);
+        }
+    </script>
+</head>
+<div style="font-family: Calibri, serif; margin: 15px;">
+    <h2>Get Stack Properties</h2>
+    <table width="100%">
+      <tr>
+          <td>Device Type</td>
+          <td>
+              <select id="deviceType">
+                  <option value="ANDROID">ANDROID</option>
+                  <option value="IOS">IOS</option>
+              </select>
+          </td>
+      </tr>
+      <tr>
+          <td colspan="2" align="center">
+              <input type="button" onclick="invoke()" value="Submit">
+          </td>
+      </tr>
+  </table>
+</div>
+</html>

@@ -1,0 +1,39 @@
+<html>
+<head>
+    <script src="../common.js" type="application/javascript"></script>
+    <script type="application/javascript">
+    
+        function invoke() {
+          const json = {};
+
+          const cardUsageStatus = document.getElementsByName('cardStatus')
+          for(const field of cardUsageStatus) {
+            if(field.checked) {
+              json['updateCardUsageStatus'] = field.value
+            }
+          }
+          callApi('PUT', '/v1/card/CardId' , JSON.stringify(json), true, true);
+        }
+    </script>
+</head>
+<div style="font-family: Calibri, serif; margin: 15px;">
+    <h2>Update Card</h2>
+    <table width="100%">
+        <tr>
+          <td>Card Usage Status</td>
+          <td id="cardStatus">
+            <input type="radio" value="ENABLED" name="cardStatus">ENABLED
+            <input type="radio" value="DISABLED" name="cardStatus">DISABLED
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="button" onclick="invoke()" value="Submit">
+            </td>
+        </tr>
+    </table>
+</div>
+</html>

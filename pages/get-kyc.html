@@ -1,0 +1,32 @@
+<html>
+<head>
+    <script src="../common.js" type="application/javascript"></script>
+    <script type="application/javascript">
+        function invoke() {
+            const bankName = document.getElementById("bankName").value;
+            callApi('GET', '/v1/kyc/' + bankName, null, true, false);
+        }
+        
+    </script>
+</head>
+<div style="font-family: Calibri, serif; margin: 15px;">
+    <h2>Get Card Details</h2>
+    <table width="100%">
+      <tr>
+          <td>Bank Name</td>
+          <td>
+              <select id="bankName">
+                  <option value="INDUSIND_JIT">IndusInd JIT</option>
+                  <option value="FEDERAL_BANK">Federal Bank</option>
+              </select>
+          </td>
+      </tr>
+      <tr><td>&nbsp;</td></tr>
+      <tr>
+          <td colspan="2" align="center">
+              <input type="button" onclick="invoke()" value="Submit">
+          </td>
+      </tr>
+    </table>
+</div>
+</html>
